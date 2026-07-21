@@ -1,0 +1,11 @@
+{
+  "name": "studia-ai",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "bash scripts/build.sh",
+    "test": "node scripts/test-worker.mjs",
+    "validate": "node scripts/validate-artifact.mjs"
+  },
+  "displayName": "Studia AI"
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "studia-ai",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-07-21",
+  "workers_dev": true,
+  "vars": {
+    "GEMINI_MODEL": "gemini-3.5-flash"
+  }
+}
