@@ -467,14 +467,14 @@ const page = `<!doctype html>
           <div class="settings-layout">
             <section class="card settings-section"><h2>სტუდენტის პროფილი</h2><div class="form-grid"><div class="field"><label for="profileName">სახელი და გვარი</label><input id="profileName" placeholder="შენი სახელი"></div><div class="field"><label for="profileUniversity">უნივერსიტეტი</label><input id="profileUniversity" placeholder="უნივერსიტეტი"></div><div class="field"><label for="profileProgram">პროგრამა</label><input id="profileProgram" placeholder="სასწავლო პროგრამა"></div><div class="field"><label for="profileSemester">სემესტრი</label><select id="profileSemester"><option>I სემესტრი</option><option>II სემესტრი</option><option>III სემესტრი</option><option>IV სემესტრი</option><option>V სემესტრი</option><option>VI სემესტრი</option><option>VII სემესტრი</option><option>VIII სემესტრი</option></select></div><div class="field full"><label for="weeklyGoalInput">კვირის სასწავლო მიზანი — საათი</label><input id="weeklyGoalInput" type="number" min="1" max="80" step="0.5" value="10"></div><div class="field full"><label for="responseStyle">AI-ის პასუხის სტილი</label><select id="responseStyle"><option value="balanced">დაბალანსებული — მოკლე ახსნა და მაგალითი</option><option value="brief">მოკლე — მხოლოდ მთავარი</option><option value="deep">დეტალური — ნაბიჯ-ნაბიჯ</option></select></div></div></section>
             <section class="card settings-section"><h2>ქცევა და კონფიდენციალურობა</h2><div class="setting-row"><span><strong>სოკრატული ტუტორი</strong><span>ტუტორის რეჟიმში კითხვებით გეხმარება.</span></span><label class="switch"><input type="checkbox" id="socraticDefault" checked><i></i></label></div><div class="setting-row"><span><strong>ოფლაინ ქეშის შენახვა</strong><span>ანგარიშის მონაცემების ასლს ამ მოწყობილობაზეც ინახავს.</span></span><label class="switch"><input type="checkbox" id="saveProgress" checked><i></i></label></div><div class="setting-row"><span><strong>გამოცდის შეხსენება</strong><span>მთავარ გვერდზე გაჩვენებს მოახლოებულ ვადას.</span></span><label class="switch"><input type="checkbox" id="examReminder" checked><i></i></label></div><div class="setting-row"><span><strong>ქართული ენა</strong><span>ინტერფეისი და AI პასუხები ქართულად.</span></span><span class="status-chip">მთავარი</span></div></section>
-            <section class="card settings-section account-card"><h2>ChatGPT ანგარიში</h2><strong id="accountName">ანგარიში იტვირთება…</strong><span id="accountEmail"></span><p style="margin:.35rem 0;color:var(--muted);font-size:.66rem;line-height:1.55">გამოცდები, სწავლის დრო, დავალებები და მასალები მხოლოდ ამ ელფოსტასთანაა დაკავშირებული.</p><a class="secondary-button" href="/signout-with-chatgpt?return_to=%2F">ანგარიშიდან გასვლა</a></section>
+            <section class="card settings-section account-card"><h2>Google ანგარიში</h2><strong id="accountName">ანგარიში იტვირთება…</strong><span id="accountEmail"></span><p style="margin:.35rem 0;color:var(--muted);font-size:.66rem;line-height:1.55">გამოცდები, სწავლის დრო, დავალებები და მასალები მხოლოდ ამ დადასტურებულ ელფოსტასთანაა დაკავშირებული.</p><button class="secondary-button" type="button" id="accountSignOut">ანგარიშიდან გასვლა</button></section>
           </div>
         </section>
       </main>
     </div>
     <dialog id="taskDialog"><form method="dialog" class="dialog-inner" id="taskForm"><div class="dialog-head"><h2>ახალი დავალება</h2><button class="icon-button" type="button" data-close-dialog aria-label="დახურვა">×</button></div><div class="form-grid"><div class="field full"><label for="taskName">დავალების სახელი</label><input id="taskName" required maxlength="80" placeholder="მაგ. SQL პრაქტიკული სამუშაო"></div><div class="field"><label for="taskSubject">საგანი</label><input id="taskSubject" required maxlength="40" placeholder="მონაცემთა ბაზები"></div><div class="field"><label for="taskDate">დაგეგმილი დღე</label><input id="taskDate" type="date" required></div><div class="field"><label for="taskTime">ხანგრძლივობა</label><select id="taskTime"><option value="25">25 წუთი</option><option value="45">45 წუთი</option><option value="60">1 საათი</option><option value="90">1.5 საათი</option></select></div></div><div class="dialog-actions"><button class="secondary-button" type="button" data-close-dialog>გაუქმება</button><button class="primary-button" value="default" id="createTask">დამატება</button></div></form></dialog>
     <dialog id="examDialog"><form method="dialog" class="dialog-inner" id="examForm"><div class="dialog-head"><h2>გამოცდის დამატება</h2><button class="icon-button" type="button" data-close-dialog aria-label="დახურვა">×</button></div><div class="form-grid"><div class="field full"><label for="examNameInput">საგანი</label><input id="examNameInput" required maxlength="60" placeholder="მაგ. მონაცემთა ბაზები"></div><div class="field"><label for="examDateInput">თარიღი</label><input id="examDateInput" type="date" required></div><div class="field"><label for="examTimeInput">დრო</label><input id="examTimeInput" type="time" value="10:00" required></div></div><div class="dialog-actions"><button class="secondary-button" type="button" data-close-dialog>გაუქმება</button><button class="primary-button" value="default">შენახვა</button></div></form></dialog>
-    <dialog id="migrationDialog"><div class="dialog-inner"><div class="dialog-head"><h2>ძველი მონაცემების გადატანა</h2></div><p style="margin:0;color:var(--muted);font-size:.75rem;line-height:1.65">ამ მოწყობილობაზე არსებული გეგმა და მასალები შეგიძლია დაუკავშირო შენს ChatGPT ანგარიშს. ეს არჩევანი მხოლოდ პირველ შესვლაზეა საჭირო.</p><div class="dialog-actions"><button class="secondary-button" type="button" id="startFreshAccount">სუფთად დაწყება</button><button class="primary-button" type="button" id="importDeviceData">ამ მოწყობილობიდან გადატანა</button></div></div></dialog>
+    <dialog id="migrationDialog"><div class="dialog-inner"><div class="dialog-head"><h2>ძველი მონაცემების გადატანა</h2></div><p style="margin:0;color:var(--muted);font-size:.75rem;line-height:1.65">ამ მოწყობილობაზე არსებული გეგმა და მასალები შეგიძლია დაუკავშირო შენს Google ანგარიშს. ეს არჩევანი მხოლოდ პირველ შესვლაზეა საჭირო.</p><div class="dialog-actions"><button class="secondary-button" type="button" id="startFreshAccount">სუფთად დაწყება</button><button class="primary-button" type="button" id="importDeviceData">ამ მოწყობილობიდან გადატანა</button></div></div></dialog>
     <div class="account-loading" id="accountLoading"><section class="card loading-card"><div class="loading-orb"></div><strong>შენი სასწავლო სივრცე იტვირთება</strong><p style="margin:.6rem 0 0;color:var(--muted);font-size:.72rem">მონაცემები შენს ანგარიშთან უსაფრთხოდ სინქრონდება.</p></section></div>
     <div class="toast" role="status" aria-live="polite"><svg class="icon"><use href="#i-check"/></svg><span></span></div>
     <script>
@@ -820,7 +820,7 @@ const page = `<!doctype html>
         async function clearDeviceData() { storage.remove('studia-profile'); storage.remove('studia-tasks'); storage.remove('studia-files'); storage.remove('studia-exams'); storage.remove('studia-study-seconds'); sessionFileBlobs.clear(); await clearStoredFileContents(); }
         function chooseAccountStart() { return new Promise(function (resolve) { var dialog = document.querySelector('#migrationDialog'); document.querySelector('#importDeviceData').onclick = function () { dialog.close(); resolve('import'); }; document.querySelector('#startFreshAccount').onclick = function () { dialog.close(); resolve('fresh'); }; dialog.showModal(); }); }
         async function bootstrapAccount() {
-          var response = await fetch('/api/bootstrap'); if (!response.ok) throw new Error('ანგარიშის ჩატვირთვა ვერ მოხერხდა.'); var result = await response.json(); account = result.user; document.querySelector('#accountName').textContent = account.name || 'ChatGPT მომხმარებელი'; document.querySelector('#accountEmail').textContent = account.email; var lastAccount = storage.get('studia-last-account', ''); var switchedAccount = Boolean(lastAccount && lastAccount !== account.email); if (switchedAccount) { await clearDeviceData(); tasks = []; files = []; exams = []; studySeconds = {}; profile = defaultProfile(account.name); }
+          var response = await fetch('/api/bootstrap'); if (!response.ok) throw new Error('ანგარიშის ჩატვირთვა ვერ მოხერხდა.'); var result = await response.json(); account = result.user; document.querySelector('#accountName').textContent = account.name || 'Google მომხმარებელი'; document.querySelector('#accountEmail').textContent = account.email; var lastAccount = storage.get('studia-last-account', ''); var switchedAccount = Boolean(lastAccount && lastAccount !== account.email); if (switchedAccount) { await clearDeviceData(); tasks = []; files = []; exams = []; studySeconds = {}; profile = defaultProfile(account.name); }
           var localImport = result.isNew && !switchedAccount && hasDeviceData();
           if (result.isNew) {
             var choice = localImport ? await chooseAccountStart() : 'fresh';
@@ -838,14 +838,15 @@ const page = `<!doctype html>
         window.addEventListener('pagehide', function () { saveStudyTime(true); }); setInterval(tickStudyTime, 1000);
         document.querySelector('#currentDate').textContent = new Date().toLocaleDateString('ka-GE', { weekday: 'long', day: 'numeric', month: 'long' });
         fetch('/api/status').then(function (response) { return response.json(); }).then(function (status) { document.querySelector('#aiStatus').textContent = status.connected ? status.provider + ' დაკავშირებულია' : 'დემო რეჟიმი'; }).catch(function () {});
+        document.querySelector('#accountSignOut').addEventListener('click', async function () { this.disabled = true; try { await fetch('/api/auth/logout', { method: 'POST' }); } finally { location.href = '/'; } });
         if ('serviceWorker' in navigator) window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
-        bootstrapAccount().catch(function (error) { var loading = document.querySelector('#accountLoading .loading-card'); loading.innerHTML = '<strong>ანგარიშის ჩატვირთვა ვერ მოხერხდა</strong><p style="color:var(--muted);font-size:.72rem;line-height:1.6">' + escapeHtml(error.message) + ' განაახლე გვერდი ან თავიდან შედი ანგარიშში.</p><a class="secondary-button" href="/signout-with-chatgpt?return_to=%2F">თავიდან შესვლა</a>'; });
+        bootstrapAccount().catch(function (error) { var loading = document.querySelector('#accountLoading .loading-card'); loading.innerHTML = '<strong>ანგარიშის ჩატვირთვა ვერ მოხერხდა</strong><p style="color:var(--muted);font-size:.72rem;line-height:1.6">' + escapeHtml(error.message) + ' განაახლე გვერდი ან თავიდან შედი ანგარიშში.</p><a class="secondary-button" href="/">თავიდან შესვლა</a>'; });
       }());
     </script>
   </body>
 </html>`;
 
-const signInPage = `<!doctype html><html lang="ka"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07101f"><title>Studia AI — შესვლა</title><style>:root{color-scheme:dark;font-family:system-ui,-apple-system,"Noto Sans Georgian",sans-serif}*{box-sizing:border-box}body{min-height:100vh;margin:0;display:grid;place-items:center;padding:1.25rem;color:#f5f7ff;background:radial-gradient(circle at 75% 0,rgba(102,92,255,.28),transparent 28rem),linear-gradient(145deg,#06101e,#081428)}main{width:min(32rem,100%);padding:clamp(1.4rem,5vw,2.5rem);border:1px solid rgba(133,151,194,.22);border-radius:1.4rem;background:rgba(11,21,48,.9);box-shadow:0 30px 80px rgba(0,0,0,.3)}.brand{display:flex;align-items:center;gap:.75rem;font-weight:750}.mark{display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:.85rem;background:linear-gradient(145deg,#7368ff,#4938ea);box-shadow:0 0 28px rgba(102,92,255,.4)}h1{margin:2rem 0 .8rem;font-size:clamp(1.8rem,6vw,2.65rem);line-height:1.12;letter-spacing:-.045em}p{color:#9ca8c2;line-height:1.7}.button{width:100%;min-height:3.25rem;display:flex;align-items:center;justify-content:center;margin-top:1.5rem;border-radius:.85rem;color:white;text-decoration:none;font-weight:700;background:linear-gradient(135deg,#756aff,#5546f2);box-shadow:0 14px 32px rgba(82,66,237,.32)}ul{display:grid;gap:.6rem;margin:1.35rem 0 0;padding:1rem 0 0;list-style:none;border-top:1px solid rgba(133,151,194,.18);color:#aab4ca;font-size:.82rem}li:before{content:"✓";margin-right:.55rem;color:#44e4b5}</style></head><body><main><div class="brand"><span class="mark">✦</span><span>Studia AI</span></div><h1>შენი სასწავლო სივრცე, შენს ანგარიშზე</h1><p>შედი ChatGPT ანგარიშით. Studia AI გამოიყენებს მხოლოდ დადასტურებულ ელფოსტას, რათა შენი გამოცდები, სწავლის დრო და მასალები სხვა სტუდენტებისგან განცალკევებით შეინახოს.</p><a class="button" href="/signin-with-chatgpt?return_to=%2F">გაგრძელება ChatGPT-ით</a><ul><li>ცალკე მონაცემები თითოეული ელფოსტისთვის</li><li>პაროლი Studia AI-ს არ გადაეცემა</li><li>პირველ შესვლაზე ძველი მონაცემების გადატანის არჩევანი</li></ul></main></body></html>`;
+const signInPage = `<!doctype html><html lang="ka"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07101f"><title>Studia AI — Google-ით შესვლა</title><style>:root{color-scheme:dark;font-family:system-ui,-apple-system,"Noto Sans Georgian",sans-serif}*{box-sizing:border-box}body{min-height:100vh;margin:0;display:grid;place-items:center;padding:1.25rem;color:#f5f7ff;background:radial-gradient(circle at 75% 0,rgba(102,92,255,.28),transparent 28rem),linear-gradient(145deg,#06101e,#081428)}main{width:min(32rem,100%);padding:clamp(1.4rem,5vw,2.5rem);border:1px solid rgba(133,151,194,.22);border-radius:1.4rem;background:rgba(11,21,48,.9);box-shadow:0 30px 80px rgba(0,0,0,.3)}.brand{display:flex;align-items:center;gap:.75rem;font-weight:750}.mark{display:grid;place-items:center;width:2.6rem;height:2.6rem;border-radius:.85rem;background:linear-gradient(145deg,#7368ff,#4938ea);box-shadow:0 0 28px rgba(102,92,255,.4)}h1{margin:2rem 0 .8rem;font-size:clamp(1.8rem,6vw,2.65rem);line-height:1.12;letter-spacing:-.045em}p{color:#9ca8c2;line-height:1.7}.google-wrap{min-height:3.25rem;display:grid;place-items:center;margin-top:1.5rem}.auth-error{min-height:1.3rem;margin:.7rem 0 0;color:#ff9aac;font-size:.75rem;text-align:center}ul{display:grid;gap:.6rem;margin:1rem 0 0;padding:1rem 0 0;list-style:none;border-top:1px solid rgba(133,151,194,.18);color:#aab4ca;font-size:.82rem}li:before{content:"✓";margin-right:.55rem;color:#44e4b5}</style><script src="https://accounts.google.com/gsi/client" async defer></script></head><body><main><div class="brand"><span class="mark">✦</span><span>Studia AI</span></div><h1>შენი სასწავლო სივრცე, შენს Google ანგარიშზე</h1><p>აირჩიე Google ანგარიში. Studia AI მიიღებს მხოლოდ დადასტურებულ ელფოსტასა და სახელს — Gmail-ზე ან Drive-ზე წვდომის გარეშე.</p><div class="google-wrap" id="googleButton"></div><p class="auth-error" id="authError" role="alert" aria-live="polite"></p><ul><li>ცალკე მონაცემები თითოეული Google ელფოსტისთვის</li><li>Google პაროლი Studia AI-ს არ გადაეცემა</li><li>იგივე ელფოსტაზე არსებული პროგრესი შენარჩუნდება</li></ul></main><script>(function(){var clientId='__GOOGLE_CLIENT_ID__';var error=document.querySelector('#authError');async function finish(response){error.textContent='';try{var result=await fetch('/api/auth/google',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({credential:response.credential})});var body=await result.json().catch(function(){return {};});if(!result.ok)throw new Error(body.error||'Google-ით შესვლა ვერ მოხერხდა.');location.replace('/');}catch(problem){error.textContent=problem.message||'Google-ით შესვლა ვერ მოხერხდა.';}}window.addEventListener('load',function(){if(!clientId||clientId.indexOf('.apps.googleusercontent.com')<0){error.textContent='Google ავტორიზაცია ჯერ არ არის კონფიგურირებული.';return;}if(!window.google||!google.accounts){error.textContent='Google-ის შესვლის მოდული ვერ ჩაიტვირთა. განაახლე გვერდი.';return;}google.accounts.id.initialize({client_id:clientId,callback:finish,auto_select:false,cancel_on_tap_outside:true});google.accounts.id.renderButton(document.querySelector('#googleButton'),{theme:'outline',size:'large',shape:'pill',text:'continue_with',logo_alignment:'left',width:340});});}());</script></body></html>`;
 
 const jsonHeaders = {
   "content-type": "application/json; charset=utf-8",
@@ -858,16 +859,7 @@ function json(data, status = 200) {
 }
 
 let storageSchemaPromise = null;
-
-function getAuthenticatedUser(request) {
-  const email = (request.headers.get("oai-authenticated-user-email") || "").trim().toLowerCase();
-  if (!email || email.length > 320 || !email.includes("@")) return null;
-  let name = (request.headers.get("oai-authenticated-user-full-name") || "").trim();
-  if (name && request.headers.get("oai-authenticated-user-full-name-encoding") === "percent-encoded-utf-8") {
-    try { name = decodeURIComponent(name); } catch { name = ""; }
-  }
-  return { email, name: name.slice(0, 120) };
-}
+let googleKeyCache = { expiresAt: 0, keys: [] };
 
 async function ensureStorage(env) {
   if (!env.DB || !env.BUCKET) throw new Error("STORAGE_NOT_CONFIGURED");
@@ -876,9 +868,143 @@ async function ensureStorage(env) {
       env.DB.prepare("CREATE TABLE IF NOT EXISTS users (email TEXT PRIMARY KEY NOT NULL, full_name TEXT, state_json TEXT NOT NULL DEFAULT '{}', initialized INTEGER NOT NULL DEFAULT 0, created_at TEXT NOT NULL, updated_at TEXT NOT NULL)"),
       env.DB.prepare("CREATE TABLE IF NOT EXISTS materials (user_email TEXT NOT NULL, id TEXT NOT NULL, name TEXT NOT NULL, size INTEGER NOT NULL, type TEXT NOT NULL, mime TEXT NOT NULL, r2_key TEXT NOT NULL, created_at TEXT NOT NULL, PRIMARY KEY (user_email, id), FOREIGN KEY (user_email) REFERENCES users(email) ON DELETE CASCADE)"),
       env.DB.prepare("CREATE INDEX IF NOT EXISTS materials_user_created_idx ON materials(user_email, created_at DESC)"),
+      env.DB.prepare("CREATE TABLE IF NOT EXISTS auth_sessions (token_hash TEXT PRIMARY KEY NOT NULL, email TEXT NOT NULL, google_sub TEXT NOT NULL, full_name TEXT, created_at TEXT NOT NULL, expires_at TEXT NOT NULL, FOREIGN KEY (email) REFERENCES users(email) ON DELETE CASCADE)"),
+      env.DB.prepare("CREATE INDEX IF NOT EXISTS auth_sessions_email_idx ON auth_sessions(email)"),
+      env.DB.prepare("CREATE INDEX IF NOT EXISTS auth_sessions_expiry_idx ON auth_sessions(expires_at)"),
     ]).catch((error) => { storageSchemaPromise = null; throw error; });
   }
   await storageSchemaPromise;
+}
+
+function renderSignInPage(clientId) {
+  const safeClientId = /^[0-9a-zA-Z._-]+\.apps\.googleusercontent\.com$/.test(clientId || "") ? clientId : "";
+  return signInPage.replace("__GOOGLE_CLIENT_ID__", safeClientId);
+}
+
+function base64UrlBytes(value) {
+  const normalized = value.replace(/-/g, "+").replace(/_/g, "/");
+  const padded = normalized + "=".repeat((4 - normalized.length % 4) % 4);
+  const binary = atob(padded);
+  const bytes = new Uint8Array(binary.length);
+  for (let index = 0; index < binary.length; index += 1) bytes[index] = binary.charCodeAt(index);
+  return bytes;
+}
+
+function base64UrlJson(value) {
+  return JSON.parse(new TextDecoder().decode(base64UrlBytes(value)));
+}
+
+function bytesToBase64Url(bytes) {
+  let binary = "";
+  for (const byte of bytes) binary += String.fromCharCode(byte);
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/g, "");
+}
+
+async function sha256Hex(value) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
+  return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function cookieValue(request, name) {
+  const cookie = request.headers.get("cookie") || "";
+  for (const item of cookie.split(";")) {
+    const separator = item.indexOf("=");
+    if (separator > 0 && item.slice(0, separator).trim() === name) return item.slice(separator + 1).trim();
+  }
+  return "";
+}
+
+async function googleJwks() {
+  if (googleKeyCache.expiresAt > Date.now() && googleKeyCache.keys.length) return googleKeyCache.keys;
+  const response = await fetch("https://www.googleapis.com/oauth2/v3/certs", { headers: { accept: "application/json" } });
+  if (!response.ok) throw new Error("GOOGLE_KEYS_UNAVAILABLE");
+  const payload = await response.json();
+  if (!Array.isArray(payload.keys) || !payload.keys.length) throw new Error("GOOGLE_KEYS_INVALID");
+  const maxAge = Number((response.headers.get("cache-control") || "").match(/max-age=(\d+)/)?.[1] || 1800);
+  googleKeyCache = { expiresAt: Date.now() + Math.min(21600, Math.max(300, maxAge)) * 1000, keys: payload.keys };
+  return googleKeyCache.keys;
+}
+
+async function verifyGoogleCredential(credential, clientId) {
+  if (typeof credential !== "string" || credential.length > 10000) throw new Error("GOOGLE_TOKEN_INVALID");
+  if (!/^[0-9a-zA-Z._-]+\.apps\.googleusercontent\.com$/.test(clientId || "")) throw new Error("GOOGLE_CLIENT_NOT_CONFIGURED");
+  const parts = credential.split(".");
+  if (parts.length !== 3) throw new Error("GOOGLE_TOKEN_INVALID");
+  let header;
+  let payload;
+  try { header = base64UrlJson(parts[0]); payload = base64UrlJson(parts[1]); } catch { throw new Error("GOOGLE_TOKEN_INVALID"); }
+  if (header.alg !== "RS256" || typeof header.kid !== "string") throw new Error("GOOGLE_TOKEN_INVALID");
+  let jwk = (await googleJwks()).find((key) => key.kid === header.kid && key.kty === "RSA");
+  if (!jwk) {
+    googleKeyCache.expiresAt = 0;
+    jwk = (await googleJwks()).find((key) => key.kid === header.kid && key.kty === "RSA");
+  }
+  if (!jwk) throw new Error("GOOGLE_KEY_NOT_FOUND");
+  const key = await crypto.subtle.importKey("jwk", jwk, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["verify"]);
+  const validSignature = await crypto.subtle.verify("RSASSA-PKCS1-v1_5", key, base64UrlBytes(parts[2]), new TextEncoder().encode(parts[0] + "." + parts[1]));
+  const now = Math.floor(Date.now() / 1000);
+  const expires = Number(payload.exp);
+  const issuedAt = Number(payload.iat);
+  const audienceValid = payload.aud === clientId || (Array.isArray(payload.aud) && payload.aud.includes(clientId));
+  const authorizedPartyValid = !payload.azp || payload.azp === clientId;
+  if (!validSignature || !["https://accounts.google.com", "accounts.google.com"].includes(payload.iss) || !audienceValid || !authorizedPartyValid || !Number.isFinite(expires) || !Number.isFinite(issuedAt) || expires <= now || issuedAt > now + 300 || payload.email_verified !== true) throw new Error("GOOGLE_TOKEN_INVALID");
+  const email = cleanString(payload.email, 320).toLowerCase();
+  const subject = cleanString(payload.sub, 160);
+  if (!email || !email.includes("@") || !subject) throw new Error("GOOGLE_TOKEN_INVALID");
+  return { email, name: cleanString(payload.name, 120) || email.split("@")[0], sub: subject };
+}
+
+async function getAuthenticatedUser(request, env) {
+  const token = cookieValue(request, "__Host-studia_session");
+  if (!token || token.length > 200) return null;
+  await ensureStorage(env);
+  const tokenHash = await sha256Hex(token);
+  const row = await env.DB.prepare("SELECT email, full_name, expires_at FROM auth_sessions WHERE token_hash = ?").bind(tokenHash).first();
+  if (!row) return null;
+  if (Date.parse(row.expires_at) <= Date.now()) {
+    await env.DB.prepare("DELETE FROM auth_sessions WHERE token_hash = ?").bind(tokenHash).run();
+    return null;
+  }
+  return { email: row.email, name: row.full_name || "სტუდენტი" };
+}
+
+async function handleGoogleSignIn(request, env) {
+  const length = Number(request.headers.get("content-length") || 0);
+  if (length > 12000) return json({ error: "Google-ის პასუხი ზედმეტად დიდია." }, 413);
+  let body;
+  try { body = await request.json(); } catch { return json({ error: "Google-ის პასუხი არასწორია." }, 400); }
+  let identity;
+  try { identity = await verifyGoogleCredential(body.credential, env.GOOGLE_CLIENT_ID); }
+  catch (error) {
+    console.error("Google sign-in rejected", error instanceof Error ? error.message : error);
+    return json({ error: "Google ანგარიშის დადასტურება ვერ მოხერხდა." }, 401);
+  }
+  await ensureStorage(env);
+  await ensureUser(env, identity);
+  const random = new Uint8Array(32);
+  crypto.getRandomValues(random);
+  const token = bytesToBase64Url(random);
+  const tokenHash = await sha256Hex(token);
+  const createdAt = new Date().toISOString();
+  const expiresAt = new Date(Date.now() + 7 * 86400000).toISOString();
+  await env.DB.batch([
+    env.DB.prepare("DELETE FROM auth_sessions WHERE expires_at <= ?").bind(createdAt),
+    env.DB.prepare("INSERT INTO auth_sessions (token_hash, email, google_sub, full_name, created_at, expires_at) VALUES (?, ?, ?, ?, ?, ?)").bind(tokenHash, identity.email, identity.sub, identity.name, createdAt, expiresAt),
+  ]);
+  const headers = new Headers(jsonHeaders);
+  headers.set("set-cookie", `__Host-studia_session=${token}; Path=/; Max-Age=604800; HttpOnly; Secure; SameSite=Lax`);
+  return new Response(JSON.stringify({ ok: true, user: { email: identity.email, name: identity.name } }), { status: 200, headers });
+}
+
+async function handleGoogleSignOut(request, env) {
+  const token = cookieValue(request, "__Host-studia_session");
+  if (token) {
+    await ensureStorage(env);
+    await env.DB.prepare("DELETE FROM auth_sessions WHERE token_hash = ?").bind(await sha256Hex(token)).run();
+  }
+  const headers = new Headers(jsonHeaders);
+  headers.set("set-cookie", "__Host-studia_session=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax");
+  return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
 }
 
 function cleanString(value, maximum = 120) {
@@ -1183,9 +1309,23 @@ async function handleChat(request, env) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    const user = getAuthenticatedUser(request);
+    if (url.pathname === "/manifest.webmanifest") return new Response(JSON.stringify({ name: "Studia AI", short_name: "Studia", lang: "ka", start_url: "/", display: "standalone", background_color: "#07101f", theme_color: "#07101f", description: "ქართული AI სასწავლო ასისტენტი უნივერსიტეტის სტუდენტებისთვის.", icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any maskable" }] }), { headers: { "content-type": "application/manifest+json; charset=utf-8", "cache-control": "public, max-age=86400" } });
+    if (url.pathname === "/icon.svg") return new Response(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7a6eff"/><stop offset="1" stop-color="#4434dc"/></linearGradient></defs><rect width="512" height="512" rx="128" fill="#07101f"/><path d="M256 92c-40-42-120-19-120 48-49 14-57 84-15 110-30 55 24 111 79 91 12 45 79 53 101 15V156c-5-22-18-45-45-64Zm0 0c40-42 120-19 120 48 49 14 57 84 15 110 30 55-24 111-79 91-12 45-79 53-101 15" fill="none" stroke="url(#g)" stroke-width="28" stroke-linecap="round"/><circle cx="392" cy="394" r="40" fill="#44e4b5"/></svg>`, { headers: { "content-type": "image/svg+xml; charset=utf-8", "cache-control": "public, max-age=86400" } });
+    if (url.pathname === "/favicon.ico") return Response.redirect(new URL("/icon.svg", url), 302);
+    if (url.pathname === "/sw.js") return new Response(`const CACHE="studia-ai-v6";const ASSETS=["/icon.svg","/manifest.webmanifest"];self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))));self.addEventListener("fetch",e=>{const u=new URL(e.request.url);if(e.request.method!=="GET"||!ASSETS.includes(u.pathname))return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(n=>{const copy=n.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return n}))) });`, { headers: { "content-type": "application/javascript; charset=utf-8", "cache-control": "no-cache", "service-worker-allowed": "/" } });
+    if (url.pathname === "/api/auth/google" && request.method === "POST") {
+      try { return await handleGoogleSignIn(request, env); }
+      catch (error) { console.error("Google sign-in error", error instanceof Error ? error.message : error); return json({ error: "Google-ით შესვლა დროებით ვერ მოხერხდა." }, 500); }
+    }
+    if (url.pathname === "/api/auth/logout" && request.method === "POST") {
+      try { return await handleGoogleSignOut(request, env); }
+      catch (error) { console.error("Google sign-out error", error instanceof Error ? error.message : error); return json({ error: "ანგარიშიდან გასვლა დროებით ვერ მოხერხდა." }, 500); }
+    }
+    let user = null;
+    try { user = await getAuthenticatedUser(request, env); }
+    catch (error) { console.error("Session lookup error", error instanceof Error ? error.message : error); }
     if (url.pathname.startsWith("/api/")) {
-      if (!user) return json({ error: "ChatGPT ანგარიშით შესვლაა საჭირო." }, 401);
+      if (!user) return json({ error: "Google ანგარიშით შესვლაა საჭირო." }, 401);
       try {
         if (url.pathname === "/api/status" && request.method === "GET") return json({ connected: Boolean(env.GEMINI_API_KEY), provider: env.GEMINI_API_KEY ? "Gemini" : "Demo" });
         if (url.pathname === "/api/bootstrap" && request.method === "GET") return handleBootstrap(env, user);
@@ -1204,18 +1344,17 @@ export default {
         return json({ error: "სერვერზე დროებითი შეცდომაა. სცადე ხელახლა." }, 500);
       }
     }
-    if (url.pathname === "/manifest.webmanifest") return new Response(JSON.stringify({ name: "Studia AI", short_name: "Studia", lang: "ka", start_url: "/", display: "standalone", background_color: "#07101f", theme_color: "#07101f", description: "ქართული AI სასწავლო ასისტენტი უნივერსიტეტის სტუდენტებისთვის.", icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml", purpose: "any maskable" }] }), { headers: { "content-type": "application/manifest+json; charset=utf-8", "cache-control": "public, max-age=86400" } });
-    if (url.pathname === "/icon.svg") return new Response(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7a6eff"/><stop offset="1" stop-color="#4434dc"/></linearGradient></defs><rect width="512" height="512" rx="128" fill="#07101f"/><path d="M256 92c-40-42-120-19-120 48-49 14-57 84-15 110-30 55 24 111 79 91 12 45 79 53 101 15V156c-5-22-18-45-45-64Zm0 0c40-42 120-19 120 48 49 14 57 84 15 110 30 55-24 111-79 91-12 45-79 53-101 15" fill="none" stroke="url(#g)" stroke-width="28" stroke-linecap="round"/><circle cx="392" cy="394" r="40" fill="#44e4b5"/></svg>`, { headers: { "content-type": "image/svg+xml; charset=utf-8", "cache-control": "public, max-age=86400" } });
-    if (url.pathname === "/sw.js") return new Response(`const CACHE="studia-ai-v5";const ASSETS=["/icon.svg","/manifest.webmanifest"];self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))));self.addEventListener("fetch",e=>{const u=new URL(e.request.url);if(e.request.method!=="GET"||!ASSETS.includes(u.pathname))return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(n=>{const copy=n.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return n}))) });`, { headers: { "content-type": "application/javascript; charset=utf-8", "cache-control": "no-cache", "service-worker-allowed": "/" } });
     if (url.pathname !== "/" || request.method !== "GET") return new Response("Not found", { status: 404 });
-    return new Response(user ? page : signInPage, {
-      headers: {
-        "content-type": "text/html; charset=utf-8",
-        "cache-control": "private, no-store",
-        "x-content-type-options": "nosniff",
-        "referrer-policy": "strict-origin-when-cross-origin",
-        "content-security-policy": "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
-      },
+    const headers = {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "private, no-store",
+      "x-content-type-options": "nosniff",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "content-security-policy": user ? "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'" : "default-src 'self'; style-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/style; script-src 'self' 'unsafe-inline' https://accounts.google.com/gsi/client; img-src 'self' data: https://lh3.googleusercontent.com; connect-src 'self' https://accounts.google.com/gsi/; frame-src https://accounts.google.com/gsi/; base-uri 'none'; frame-ancestors 'none'; form-action 'self'",
+    };
+    if (!user) headers["cross-origin-opener-policy"] = "same-origin-allow-popups";
+    return new Response(user ? page : renderSignInPage(env.GOOGLE_CLIENT_ID), {
+      headers,
     });
   },
 };

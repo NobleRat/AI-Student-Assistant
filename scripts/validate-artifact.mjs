@@ -14,7 +14,10 @@ const [source, manifest] = await Promise.all([
 ]);
 const parsedManifest = JSON.parse(manifest);
 if (parsedManifest.d1) {
-  await access(resolve(projectRoot, "dist/.openai/drizzle/0000_studia_accounts.sql"));
+  const journal = JSON.parse(await readFile(resolve(projectRoot, "dist/.openai/drizzle/meta/_journal.json"), "utf8"));
+  for (const entry of journal.entries || []) {
+    await access(resolve(projectRoot, `dist/.openai/drizzle/${entry.tag}.sql`));
+  }
 }
 
 // A data URL forces ESM parsing even though the generated output has no package.json.
