@@ -15,6 +15,13 @@
       "when": 1784635200000,
       "tag": "0001_google_sessions",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1784642400000,
+      "tag": "0002_google_calendar",
+      "breakpoints": true
     }
   ]
 }
